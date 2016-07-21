@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="v31-B3-5e2">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Image Feed Table View Controller-->
+        <scene sceneID="0NL-pS-r0r">
+            <objects>
+                <tableViewController id="v31-B3-5e2" customClass="ImageFeedTableViewController" customModule="PhotoFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="190" sectionHeaderHeight="28" sectionFooterHeight="28" id="vf0-07-x9m">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ImageFeedItemTableViewCell" rowHeight="190" id="sZD-8e-2iK" customClass="ImageFeedItemTableViewCell" customModule="PhotoFeed" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="190"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sZD-8e-2iK" id="lyB-Go-Zyu">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="189.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Wvo-cR-UvM">
+                                            <rect key="frame" x="8" y="8" width="584" height="174"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MTK-Va-YuV">
+                                                    <rect key="frame" x="0.0" y="0.0" width="292" height="174"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Eh-8J-fv1">
+                                                    <rect key="frame" x="292" y="0.0" width="292" height="174"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Wvo-cR-UvM" secondAttribute="bottom" id="8OD-hO-scm"/>
+                                        <constraint firstItem="Wvo-cR-UvM" firstAttribute="leading" secondItem="lyB-Go-Zyu" secondAttribute="leadingMargin" id="ecZ-xa-p3l"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Wvo-cR-UvM" secondAttribute="trailing" id="jRd-84-mWc"/>
+                                        <constraint firstItem="Wvo-cR-UvM" firstAttribute="top" secondItem="lyB-Go-Zyu" secondAttribute="topMargin" id="jnk-yc-KIT"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="myImageView" destination="MTK-Va-YuV" id="401-Ta-JFM"/>
+                                    <outlet property="myLable" destination="9Eh-8J-fv1" id="3js-z9-PaA"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="v31-B3-5e2" id="lip-nk-dko"/>
+                            <outlet property="delegate" destination="v31-B3-5e2" id="SeM-Q2-JcX"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gmT-AQ-m2B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="442" y="379"/>
+        </scene>
+    </scenes>
+</document>
