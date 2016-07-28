@@ -8,9 +8,15 @@
 
 import UIKit
 import Twitter
+import CoreData
 
 class TweetsTableViewController: UITableViewController, UITextFieldDelegate {
 
+    // Model
+    
+    // core data code
+    var managedObjectContext: NSManagedObjectContext? = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
+    
     var tweets = [Array<Twitter.Tweet>]() {
         didSet {
             tableView.reloadData()
@@ -40,10 +46,42 @@ class TweetsTableViewController: UITableViewController, UITextFieldDelegate {
                     //if request == weakSelf?.lastTwitterRequest{
                         if !newTweets.isEmpty {
                             weakSelf?.tweets.insert(newTweets, atIndex: 0)
+                            weakSelf?.updateDatabase(newTweets) // core data code
                         }
                     //}
                 }
             }
+        }
+    }
+    
+    // core data code
+    private func updateDatabase(newTweets: [Twitter.Tweet]){
+        managedObjectContext?.performBlock{
+            // this will insert tweets into the database
+            for twitterInfo in newTweets {
+                _ = Tweet.tweetWithTwitterInfo(twitterInfo, inManagedObjectContext: self.managedObjectContext!)
+            }
+            
+            do {
+                try self.managedObjectContext?.save()
+            } catch let error {
+                print ("Core Data Error: \(error)")
+            }
+        }
+        printDatabaseStatistics()
+        print("done printing database statistics")
+    }
+    
+    // core data code
+    private func printDatabaseStatistics(){
+        managedObjectContext?.performBlock{
+            // fetch request with no predicate gives everything back - in this case will return all TwitterUsers
+            if let results = try? self.managedObjectContext!.executeFetchRequest(NSFetchRequest(entityName: "TwitterUser")) {
+                print ("\(results.count) TwitterUsers")
+            }
+            
+            let tweetCount = self.managedObjectContext!.countForFetchRequest(NSFetchRequest(entityName: "Tweet"), error: nil)
+            print ("\(tweetCount) Tweets")
         }
     }
     
@@ -92,52 +130,16 @@ class TweetsTableViewController: UITableViewController, UITextFieldDelegate {
         searchText = textField.text
         return true
     }
-    
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "TweetersMentioningSearchTerm" {
+            if let tweetersTVC = segue.destinationViewController as? TweetersTableViewController {
+                tweetersTVC.mention = searchText
+                tweetersTVC.managedObjectContext = managedObjectContext
+            }
+        }
     }
-    */
-
 }
