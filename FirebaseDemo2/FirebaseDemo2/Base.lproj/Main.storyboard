@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FirebaseDemo2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKd-KG-QSC">
+                                <rect key="frame" x="186" y="95" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fnh-Gh-DDF">
+                                <rect key="frame" x="60" y="266" width="43" height="30"/>
+                                <state key="normal" title="Sunny"/>
+                                <connections>
+                                    <action selector="sunnyTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NYi-Sy-9wf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5q8-1e-hBv">
+                                <rect key="frame" x="295" y="266" width="43" height="30"/>
+                                <state key="normal" title="Foggy"/>
+                                <connections>
+                                    <action selector="foggyTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2he-SH-JoG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zKd-KG-QSC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="186" id="OaL-WS-bjQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5q8-1e-hBv" secondAttribute="trailing" constant="56" id="Yo5-St-Aue"/>
+                            <constraint firstItem="Fnh-Gh-DDF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="40" id="biG-Nf-FEQ"/>
+                            <constraint firstItem="Fnh-Gh-DDF" firstAttribute="baseline" secondItem="5q8-1e-hBv" secondAttribute="baseline" id="pEZ-il-p3o"/>
+                            <constraint firstItem="Fnh-Gh-DDF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="246" id="wzg-pZ-ie0"/>
+                            <constraint firstItem="zKd-KG-QSC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="75" id="zm3-fC-16R"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="sunnyButtonTouch" destination="Fnh-Gh-DDF" id="WYl-is-eJB"/>
+                        <outlet property="weatherLabel" destination="zKd-KG-QSC" id="74Z-by-7cz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
